@@ -16,17 +16,6 @@
   <meta property="og:image:height" content="630">
   <meta property="og:locale" content="pt_BR">
 
-  <!-- Twitter Card -->
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Bem Mineiro Açaí">
-  <meta name="twitter:description" content="Açaí cremoso, prato do dia, combinações especiais e salgados deliciosos.">
-  <meta name="twitter:image" content="assets/logo-og.png">
-
-  <!-- Favicon -->
-  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon.png">
-  <link rel="icon" type="image/png" sizes="192x192" href="assets/favicon.png">
-  <link rel="apple-touch-icon" sizes="180x180" href="assets/favicon.png">
-
   <!-- Fontes -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -34,6 +23,64 @@
 
   <!-- CSS -->
   <link rel="stylesheet" href="styles.css">
+  <style>
+    /* Estilos do Modal de Personalização */
+    .modal-backdrop {
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0,0,0,0.6);
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+    }
+    .modal-card {
+      background: #fff;
+      border-radius: 16px;
+      max-width: 500px;
+      width: 100%;
+      max-height: 90vh;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+    }
+    .modal-header {
+      padding: 1.25rem;
+      background: #42105f;
+      color: #fff;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .modal-header h3 { margin: 0; font-size: 1.2rem; color: #fff; }
+    .modal-body {
+      padding: 1.25rem;
+      overflow-y: auto;
+      flex: 1;
+    }
+    .modal-footer {
+      padding: 1rem 1.25rem;
+      border-top: 1px solid #eee;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: #fafafa;
+    }
+    .option-group { margin-bottom: 1.5rem; }
+    .option-group h4 { margin-bottom: 0.5rem; font-size: 1rem; color: #42105f; border-bottom: 2px solid #f0e6f5; padding-bottom: 4px; }
+    .option-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.5rem 0;
+      border-bottom: 1px solid #f5f5f5;
+    }
+    .option-item label { display: flex; align-items: center; gap: 8px; cursor: pointer; width: 100%; font-size: 0.95rem; }
+    .close-modal { background: none; border: none; color: #fff; font-size: 1.5rem; cursor: pointer; }
+    .radio-option { margin-bottom: 0.5rem; }
+  </style>
 </head>
 <body>
   <div class="announcement-bar">
@@ -48,14 +95,14 @@
         <img class="brand-logo" src="assets/logo.png" alt="Logo Bem Mineiro Açaí" width="51" height="51">
         <span class="brand-copy"><strong>BEM MINEIRO</strong><small>AÇAÍ & SALGADOS</small></span>
       </a>
-      <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Abrir menu" aria-expanded="false" aria-controls="mainNav"><span></span><span></span><span></span></button>
-      <nav class="main-nav" id="mainNav" aria-label="Navegação principal">
+      <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Abrir menu"><span></span><span></span><span></span></button>
+      <nav class="main-nav" id="mainNav">
         <a href="#cardapio">Cardápio</a>
         <a href="#sobre">Nossa casa</a>
         <a href="#horarios">Horários</a>
         <a href="#contato">Contato</a>
       </nav>
-      <button class="cart-button" id="openCart" aria-label="Abrir carrinho de compras">
+      <button class="cart-button" id="openCart">
         <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 4h2l2.1 10.1a2 2 0 0 0 2 1.6h8.8a2 2 0 0 0 1.9-1.4L22 8H6M10 20a1 1 0 1 0 0-2 1 1 0 0 0 0 2Zm8 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2Z"/></svg>
         <span>Meu pedido</span><b class="cart-count" id="cartCount">0</b>
       </button>
@@ -69,435 +116,293 @@
         <div class="hero-copy">
           <div class="eyebrow"><span class="eyebrow-icon">✳</span> O SABOR QUE CONQUISTA!</div>
           <h1>Um açaí de respeito.<br><em>Um sabor bem mineiro.</em></h1>
-          <p>Monte sua combinação favorita, confira o almoço especial do dia ou escolha um salgado e aproveite. Feito para matar a vontade!</p>
+          <p>Monte sua combinação favorita de açaí, escolha as opções do seu almoço ou peça um salgado bem quentinho!</p>
           <div class="hero-actions">
             <a class="button button-primary" href="#cardapio">Explorar cardápio <span aria-hidden="true">→</span></a>
-            <a class="text-link" href="#sobre">Conheça a Bem Mineiro <span aria-hidden="true">↗</span></a>
-          </div>
-          <div class="hero-proof">
-            <div class="proof-icon">♥</div>
-            <div><strong>Seu pedido, do seu jeito</strong><span>Para entregar ou retirar</span></div>
-            <span class="proof-divider"></span>
-            <div class="proof-icon proof-sun">✦</div>
-            <div><strong>Combinações caprichadas</strong><span>Almoço, açaí e salgados</span></div>
           </div>
         </div>
-        <div class="hero-visual" aria-label="Açaí servido com frutas e acompanhamentos">
-          <div class="hero-image-wrap"><img src="https://images.unsplash.com/photo-1590301157890-4810ed352733?auto=format&fit=crop&w=1200&q=85" alt="Tigela de açaí com frutas e granola" fetchpriority="high"></div>
-          <div class="floating-note note-top"><span class="note-star">✦</span><span><strong>Feito com carinho</strong><small>Do primeiro ao último detalhe</small></span></div>
-          <div class="floating-note note-bottom"><div class="mini-fruit">●</div><span><strong>Hora de se alimentar bem</strong><small>Escolha seu favorito!</small></span></div>
-          <div class="hero-sticker"><span>MAIS</span><strong>SABOR</strong><span>NA SUA ROTINA</span></div>
-        </div>
-      </div>
-      <div class="hero-bottom-line"><span>ALMOÇO • AÇAÍ • SALGADOS • BOAS MEMÓRIAS</span><span>UM PEDACINHO DE MINAS EM CADA PEDIDO</span></div>
-    </section>
-
-    <section class="benefit-strip" aria-label="Vantagens">
-      <div class="container benefit-grid">
-        <div class="benefit-item"><span class="benefit-symbol">◉</span><div><strong>Escolha como receber</strong><small>Entrega ou retirada</small></div></div>
-        <div class="benefit-item"><span class="benefit-symbol">♡</span><div><strong>Combinações do seu jeito</strong><small>Monte seu momento</small></div></div>
-        <div class="benefit-item"><span class="benefit-symbol">✦</span><div><strong>Para qualquer hora</strong><small>Do almoço à sobremesa</small></div></div>
       </div>
     </section>
 
     <section class="menu-section section-padding" id="cardapio">
       <div class="container">
         <div class="section-heading">
-          <div><div class="eyebrow"><span class="eyebrow-icon">✳</span> ESCOLHA SUA VONTADE</div><h2>Nosso <em>cardápio</em></h2><p>Seu próximo favorito está aqui. Confira as opções e monte seu pedido.</p></div>
-          <div class="menu-search"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.8" cy="10.8" r="6.8"></circle><path d="m16 16 5 5"></path></svg><input id="menuSearch" type="search" placeholder="Buscar no cardápio" aria-label="Buscar no cardápio"></div>
+          <div><div class="eyebrow"><span class="eyebrow-icon">✳</span> ESCOLHA SUA VONTADE</div><h2>Nosso <em>cardápio</em></h2></div>
+          <div class="menu-search"><input id="menuSearch" type="search" placeholder="Buscar no cardápio"></div>
         </div>
 
-        <div class="category-tabs" role="group" aria-label="Filtrar categorias">
+        <div class="category-tabs" role="group">
           <button class="category-tab active" data-category="todos">Tudo <span>✦</span></button>
           <button class="category-tab" data-category="almoco">Prato do Dia 🍲</button>
           <button class="category-tab" data-category="acai">Açaí no Copo</button>
           <button class="category-tab" data-category="garrafinha">Garrafinha</button>
           <button class="category-tab" data-category="salgados">Salgados</button>
-          <button class="category-tab" data-category="adicionais">Adicionais</button>
-          <button class="category-tab" data-category="coberturas">Coberturas</button>
-          <button class="category-tab" data-category="confeitos">Confeitos</button>
-          <button class="category-tab" data-category="fini">Fini</button>
           <button class="category-tab" data-category="bebidas">Bebidas</button>
         </div>
 
-        <div class="product-grid" id="productGrid" aria-live="polite"></div>
-        <div class="empty-state" id="emptyState" hidden><span>☻</span><strong>Não encontramos esse item.</strong><p>Tente outro nome ou escolha uma categoria diferente.</p></div>
-      </div>
-    </section>
-
-    <section class="story-section" id="sobre">
-      <div class="container story-layout">
-        <div class="story-gallery">
-          <div class="story-photo story-photo-main"><img src="https://images.unsplash.com/photo-1490474418585-ba9bad8fd0ea?auto=format&fit=crop&w=900&q=80" alt="Frutas frescas para acompanhar o açaí" loading="lazy"></div>
-          <div class="story-photo story-photo-small"><img src="https://images.unsplash.com/photo-1601050690597-df0568f70950?auto=format&fit=crop&w=700&q=80" alt="Salgados preparados para servir" loading="lazy"></div>
-          <div class="story-logo-badge" aria-hidden="true">
-            <img src="assets/logo.png" alt="" loading="lazy">
-          </div>
-          <div class="story-stamp"><span>UAI, QUE</span><strong>DELÍCIA!</strong><span>♥ FEITO COM CARINHO</span></div>
-        </div>
-        <div class="story-copy">
-          <div class="eyebrow"><span class="eyebrow-icon">✳</span> NOSSA CASA, SEU MOMENTO</div>
-          <h2>Tem coisa melhor que<br><em>comer bem?</em></h2>
-          <p>Na Bem Mineiro, a ideia é simples: deixar seu dia mais gostoso. Tem almoço caseiro caprichado, açaí para refrescar, adicionais para personalizar e salgados deliciosos.</p>
-          <p>Chame a turma, faça uma pausa no trabalho ou aproveite em família. Você escolhe a combinação e a gente prepara tudo com carinho.</p>
-          <div class="story-values"><div><span>01</span><strong>Do seu jeito</strong><small>Escolha seus favoritos</small></div><div><span>02</span><strong>Sem complicação</strong><small>Peça pelo WhatsApp</small></div><div><span>03</span><strong>Pra compartilhar</strong><small>Mais sabor na rotina</small></div></div>
-          <a class="button button-dark" href="#cardapio">Montar meu pedido <span aria-hidden="true">→</span></a>
-        </div>
-      </div>
-    </section>
-
-    <section class="order-banner-section">
-      <div class="container"><div class="order-banner">
-        <div class="banner-decoration">✳</div>
-        <div class="banner-logo-mark" aria-hidden="true">
-          <img src="assets/logo.png" alt="" loading="lazy">
-        </div>
-        <div><span class="banner-kicker">BATEU A VONTADE?</span><h2>Seu próximo pedido está<br>mais perto do que você pensa.</h2><p>Escolha seus favoritos e finalize o pedido em poucos passos.</p></div>
-        <a class="button button-light" href="#cardapio">Quero pedir <span aria-hidden="true">→</span></a>
-        <div class="banner-big-berry">●</div>
-      </div></div>
-    </section>
-
-    <section class="info-section section-padding" id="horarios">
-      <div class="container info-grid">
-        <div class="info-copy"><div class="eyebrow"><span class="eyebrow-icon">✳</span> PODE CHEGAR</div><h2>Estamos por aqui<br><em>para matar sua vontade.</em></h2><p>Confira os nossos horários antes de pedir. Os pedidos feitos fora do expediente podem ser respondidos no próximo dia de funcionamento.</p><div class="location-placeholder"><span class="location-icon">⌖</span><div><strong>Entrega e retirada</strong><small>Consulte a disponibilidade para seu endereço pelo WhatsApp.</small></div></div></div>
-        <div class="hours-card"><div class="hours-card-title"><span class="hours-icon">◷</span><div><strong>Horário de funcionamento</strong><small>Confira antes de fazer seu pedido</small></div></div><div class="hours-list" id="hoursList"></div><div class="hours-footnote"><span>●</span><span>Atendimento rápido via WhatsApp</span></div></div>
-      </div>
-    </section>
-
-    <section class="contact-section" id="contato">
-      <div class="container contact-layout">
-        <div class="contact-copy">
-          <div class="eyebrow eyebrow-light"><span class="eyebrow-icon">✳</span> VAMOS CONVERSAR?</div>
-          <h2>Ficou com dúvida?<br><em>Fala com a gente.</em></h2>
-          <p>Quer confirmar a entrega, consultar algum item ou mandar uma mensagem? Preencha o formulário e a gente continua a conversa pelo WhatsApp.</p>
-          <div class="contact-social-row">
-            <a href="https://www.instagram.com/bem_mineiro_acai_bq/" id="instagramLink" class="social-link" target="_blank" rel="noopener noreferrer">
-              <span class="social-icon social-instagram">
-                <img src="assets/logo.png" alt="" width="35" height="35" aria-hidden="true">
-              </span>
-              <span><strong>Instagram</strong><small>@bem_mineiro_acai_bq</small></span>
-              <span class="social-arrow">↗</span>
-            </a>
-            <a href="#" id="whatsappLink" class="social-link">
-              <span class="social-icon social-whatsapp">◔</span>
-              <span><strong>WhatsApp</strong><small>(32) 99811-1834</small></span>
-              <span class="social-arrow">↗</span>
-            </a>
-          </div>
-        </div>
-        <form class="contact-form" id="contactForm">
-          <div class="form-heading"><span class="form-spark">✦</span><div><h3>Mande uma mensagem</h3><p>Preencha os dados para iniciar o contato.</p></div></div>
-          <label for="contactName">Seu nome</label>
-          <input id="contactName" name="name" type="text" placeholder="Como podemos te chamar?" required maxlength="80">
-          <label for="contactReason">Sobre o que deseja falar?</label>
-          <select id="contactReason" name="reason" required>
-            <option value="" disabled selected>Selecione um assunto</option>
-            <option>Quero fazer um pedido</option>
-            <option>Almoço do dia</option>
-            <option>Entrega e retirada</option>
-            <option>Dúvida sobre o cardápio</option>
-            <option>Outro assunto</option>
-          </select>
-          <label for="contactMessage">Sua mensagem</label>
-          <textarea id="contactMessage" name="message" rows="3" placeholder="Escreva sua mensagem por aqui..." required maxlength="600"></textarea>
-          <button class="button button-primary button-full" type="submit">Enviar pelo WhatsApp <span aria-hidden="true">→</span></button>
-          <p class="form-privacy">Ao enviar, o WhatsApp será aberto com sua mensagem pronta para revisão.</p>
-        </form>
+        <div class="product-grid" id="productGrid"></div>
+        <div class="empty-state" id="emptyState" hidden><span>☻</span><strong>Não encontramos esse item.</strong></div>
       </div>
     </section>
   </main>
 
-  <footer class="site-footer">
-    <div class="container footer-main">
-      <a class="brand brand-footer" href="#topo" aria-label="Voltar ao topo — Bem Mineiro Açaí">
-        <img class="brand-logo" src="assets/logo.png" alt="Logo Bem Mineiro Açaí" width="51" height="51">
-        <span class="brand-copy"><strong>BEM MINEIRO</strong><small>AÇAÍ & SALGADOS</small></span>
-      </a>
-      <p>Açaí, salgados, almoço e carinho em cada pedido.<br><span>Feito para deixar seu dia mais gostoso.</span></p>
-      <div class="footer-links"><a href="#cardapio">Cardápio</a><a href="#horarios">Horários</a><a href="#contato">Contato</a></div>
+  <!-- Modal de Personalização (Açaí / Almoço) -->
+  <div class="modal-backdrop" id="customModal" hidden>
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3 id="modalProductName">Opções do Pedido</h3>
+        <button class="close-modal" id="closeModal">&times;</button>
+      </div>
+      <div class="modal-body" id="modalOptionsBody"></div>
+      <div class="modal-footer">
+        <div>
+          <small>Total do Item:</small><br>
+          <strong id="modalTotalPrice">R$ 0,00</strong>
+        </div>
+        <button class="button button-primary" id="confirmAddToCart">Adicionar ao Pedido</button>
+      </div>
     </div>
-    <div class="container footer-bottom">
-      <span>© <span id="currentYear"></span> Bem Mineiro Açaí. Todos os direitos reservados.</span>
-      <a href="#topo">Voltar ao topo ↑</a>
-    </div>
-  </footer>
+  </div>
 
   <!-- Carrinho Drawer -->
   <div class="cart-backdrop" id="cartBackdrop" hidden></div>
-  <aside class="cart-drawer" id="cartDrawer" aria-labelledby="cartTitle" aria-hidden="true" inert>
+  <aside class="cart-drawer" id="cartDrawer" inert>
     <div class="cart-header">
-      <div class="cart-header-left">
-        <img class="cart-logo" src="assets/logo.png" alt="" width="42" height="42" aria-hidden="true">
-        <div>
-          <span class="cart-kicker">BEM MINEIRO AÇAÍ</span>
-          <h2 id="cartTitle">Seu pedido <span id="cartTitleCount">(0)</span></h2>
-        </div>
-      </div>
-      <button class="icon-button" id="closeCart" aria-label="Fechar carrinho">×</button>
+      <h2>Seu pedido <span id="cartTitleCount">(0)</span></h2>
+      <button class="icon-button" id="closeCart">×</button>
     </div>
     <div class="cart-content">
       <div id="cartItems" class="cart-items"></div>
       <div class="cart-empty" id="cartEmpty">
-        <div class="cart-empty-icon">♡</div>
         <h3>Seu carrinho está vazio</h3>
-        <p>Escolha algo gostoso no cardápio para começar.</p>
-        <button class="button button-primary" id="browseMenu">Ver cardápio <span aria-hidden="true">→</span></button>
       </div>
       <div class="checkout-fields" id="checkoutFields" hidden>
-        <div class="checkout-divider"></div>
         <h3>Como você quer receber?</h3>
         <div class="fulfillment-options">
-          <label class="fulfillment-option"><input type="radio" name="fulfillment" value="Entrega" checked><span>♧ Entrega</span></label>
-          <label class="fulfillment-option"><input type="radio" name="fulfillment" value="Retirada"><span>↗ Retirada</span></label>
+          <label><input type="radio" name="fulfillment" value="Entrega" checked> Entrega</label>
+          <label><input type="radio" name="fulfillment" value="Retirada"> Retirada</label>
         </div>
         <label for="customerName">Seu nome</label>
-        <input id="customerName" type="text" placeholder="Nome para o pedido" maxlength="80">
+        <input id="customerName" type="text" placeholder="Seu nome">
         <div id="addressField">
           <label for="customerAddress">Endereço de entrega</label>
-          <textarea id="customerAddress" rows="2" maxlength="220" placeholder="Rua, número, bairro e referência"></textarea>
+          <textarea id="customerAddress" rows="2" placeholder="Endereço completo"></textarea>
         </div>
         <label for="paymentMethod">Forma de pagamento</label>
         <select id="paymentMethod">
           <option value="Pix">Pix</option>
           <option value="Dinheiro">Dinheiro</option>
-          <option value="Cartão na entrega/retirada">Cartão na entrega/retirada</option>
+          <option value="Cartão">Cartão na entrega/retirada</option>
         </select>
         <div id="changeField" hidden>
           <label for="cashChange">Troco para quanto?</label>
-          <input id="cashChange" type="text" inputmode="decimal" placeholder="Ex.: R$ 50,00">
+          <input id="cashChange" type="text" placeholder="Ex.: R$ 50,00">
         </div>
-        <label for="orderNotes">Observações (opcional)</label>
-        <textarea id="orderNotes" rows="2" maxlength="300" placeholder="Adicionais, opçoes de carne no almoço, ponto de referência..."></textarea>
+        <label for="orderNotes">Observações</label>
+        <textarea id="orderNotes" rows="2" placeholder="Ponto de referência ou observações do pedido..."></textarea>
       </div>
     </div>
     <div class="cart-footer" id="cartFooter" hidden>
       <div class="cart-total-row"><span>Subtotal</span><strong id="cartSubtotal">R$ 0,00</strong></div>
-      <p class="delivery-note" id="deliveryNote">Entrega e taxas serão confirmadas pelo WhatsApp.</p>
-      <button class="button button-primary button-full" id="checkoutButton">Finalizar pelo WhatsApp <span aria-hidden="true">→</span></button>
-      <p class="cart-disclaimer">O pedido só será enviado depois que você revisar e enviar a mensagem no WhatsApp.</p>
+      <button class="button button-primary button-full" id="checkoutButton">Finalizar pelo WhatsApp →</button>
     </div>
   </aside>
 
-  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <div class="toast" id="toast"></div>
 
-  <!-- SCRIPT COMPLETO DA APLICAÇÃO -->
+  <!-- SCRIPT COMPLETO -->
   <script>
-    /*
-     * BEM MINEIRO AÇAÍ — Configurações e Script Geral
-     */
-    const STORE_CONFIG = {
-      whatsapp: "5532998111834", // (32) 99811-1834
-      instagram: "https://www.instagram.com/bem_mineiro_acai_bq/",
-      currency: "BRL",
-      locale: "pt-BR"
+    const STORE_CONFIG = { whatsapp: "5532998111834", currency: "BRL", locale: "pt-BR" };
+
+    // Adicionais exclusivos para Açaí e Garrafinha
+    const ACAI_EXTRAS = {
+      adicionais: [
+        { name: "Nutella", price: 5.00 },
+        { name: "Chocolate Branco", price: 3.00 },
+        { name: "Chocolate ao Leite", price: 3.00 },
+        { name: "Morango", price: 3.00 },
+        { name: "Leite Ninho", price: 3.00 },
+        { name: "Creme de Ninho", price: 4.00 },
+        { name: "Doce de Leite", price: 3.00 },
+        { name: "Paçoca", price: 2.50 },
+        { name: "Ovomaltine", price: 4.00 },
+        { name: "Banana", price: 2.00 },
+        { name: "Manga", price: 3.00 },
+        { name: "Granola", price: 2.00 },
+        { name: "Biscoito Oreo", price: 3.00 }
+      ],
+      coberturas: [
+        { name: "Cobertura de Morango", price: 2.00 },
+        { name: "Cobertura de Chocolate", price: 2.00 },
+        { name: "Cobertura de Doce de Leite", price: 2.00 },
+        { name: "Leite Condensado", price: 2.50 }
+      ],
+      confeitos: [
+        { name: "Granulado Branco", price: 1.50 },
+        { name: "Granulado Preto", price: 1.50 },
+        { name: "Granulado Colorido", price: 1.50 },
+        { name: "Confete Colorido", price: 1.50 }
+      ],
+      fini: [
+        { name: "Fini Banana", price: 3.00 },
+        { name: "Fini Beijo", price: 3.00 },
+        { name: "Fini Dentadura", price: 3.00 },
+        { name: "Fini Azedinho", price: 3.00 }
+      ]
     };
 
-    // Cardápio completo
+    // Produtos Principais
     const PRODUCTS = [
-      // ============ ALMOÇO / PRATO DO DIA ============
+      // PRATO DO DIA
       {
         id: "almoco-segunda",
         name: "Almoço de Segunda-feira",
         category: "almoco",
         categoryLabel: "Prato do Dia",
-        dayOfWeek: 1, // Segunda-feira
-        description: "Arroz, Feijão Batido, Bife de porco ou frango, macarrão e Farofa.",
-        price: 20.00, // Ajuste o valor conforme necessário
+        dayOfWeek: 1,
+        description: "Arroz, Feijão Batido, macarrão e Farofa.",
+        price: 20.00,
         image: "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=700&q=80",
-        tag: "Apenas Segunda"
+        optionsGroup: [
+          { title: "Escolha a sua carne:", options: ["Bife de porco", "Frango"] }
+        ]
       },
       {
         id: "almoco-terca",
         name: "Almoço de Terça-feira",
         category: "almoco",
         categoryLabel: "Prato do Dia",
-        dayOfWeek: 2, // Terça-feira
-        description: "Arroz, Feijão Batido, Carne de boi com legumes ou linguiça de porco, salada de alface e tomate.",
+        dayOfWeek: 2,
+        description: "Arroz, Feijão Batido, salada de alface e tomate.",
         price: 20.00,
         image: "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=700&q=80",
-        tag: "Apenas Terça"
+        optionsGroup: [
+          { title: "Escolha a sua carne:", options: ["Carne de boi com legumes", "Linguiça de porco"] }
+        ]
       },
       {
         id: "almoco-quarta",
         name: "Almoço de Quarta-feira",
         category: "almoco",
         categoryLabel: "Prato do Dia",
-        dayOfWeek: 3, // Quarta-feira
-        description: "Arroz, Feijão Batido, Frango com Quiabo ou Bife de Porco, Angu, Salada de repolho e tomate.",
+        dayOfWeek: 3,
+        description: "Arroz, Feijão Batido, Angu, Salada de repolho e tomate.",
         price: 20.00,
         image: "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=700&q=80",
-        tag: "Apenas Quarta"
+        optionsGroup: [
+          { title: "Escolha a sua carne:", options: ["Frango com Quiabo", "Bife de Porco"] }
+        ]
       },
       {
         id: "almoco-quinta",
         name: "Almoço de Quinta-feira",
         category: "almoco",
         categoryLabel: "Prato do Dia",
-        dayOfWeek: 4, // Quinta-feira
-        description: "Arroz, Feijão Batido, Costela ou Torresmo, angu e couve, salada de alface e tomate.",
+        dayOfWeek: 4,
+        description: "Arroz, Feijão Batido, angu, couve, salada de alface e tomate.",
         price: 20.00,
         image: "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=700&q=80",
-        tag: "Apenas Quinta"
+        optionsGroup: [
+          { title: "Escolha a sua carne:", options: ["Costela", "Torresmo"] }
+        ]
       },
       {
         id: "almoco-sexta",
         name: "Almoço de Sexta-feira",
         category: "almoco",
         categoryLabel: "Prato do Dia",
-        dayOfWeek: 5, // Sexta-feira
-        description: "Arroz, Feijão Gordo ou batido, Farofa, couve e salada (linguiça de porco opcional).",
+        dayOfWeek: 5,
+        description: "Arroz, Farofa, couve e salada.",
         price: 20.00,
         image: "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=700&q=80",
-        tag: "Apenas Sexta"
+        optionsGroup: [
+          { title: "Tipo de feijão:", options: ["Feijão Gordo", "Feijão Batido"] },
+          { title: "Acompanhamento opcional:", options: ["Com Linguiça de porco", "Sem Linguiça de porco"] }
+        ]
       },
       {
         id: "almoco-sabado",
         name: "Almoço de Sábado",
         category: "almoco",
         categoryLabel: "Prato do Dia",
-        dayOfWeek: 6, // Sábado
-        description: "Arroz, farofa, churrasco de porco, boi ou frango e vinagrete.",
+        dayOfWeek: 6,
+        description: "Arroz, farofa e vinagrete.",
         price: 22.00,
         image: "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=700&q=80",
-        tag: "Apenas Sábado"
+        optionsGroup: [
+          { title: "Escolha o churrasco:", options: ["Churrasco de Porco", "Churrasco de Boi", "Churrasco de Frango"] }
+        ]
       },
       {
         id: "almoco-domingo",
         name: "Almoço de Domingo",
         category: "almoco",
         categoryLabel: "Prato do Dia",
-        dayOfWeek: 0, // Domingo
+        dayOfWeek: 0,
         description: "Arroz Tropeiro e ovo frito.",
         price: 22.00,
-        image: "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=700&q=80",
-        tag: "Apenas Domingo"
+        image: "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=700&q=80"
       },
 
-      // ============ AÇAÍ NO COPO ============
-      {id:"acai-300",name:"Açaí no Copo 300ml",category:"acai",categoryLabel:"Açaí no Copo",description:"Açaí cremoso com 2 adicionais grátis.",price:16.00,image:"https://images.unsplash.com/photo-1590301157890-4810ed352733?auto=format&fit=crop&w=700&q=80",tag:"2 adicionais grátis"},
-      {id:"acai-500",name:"Açaí no Copo 500ml",category:"acai",categoryLabel:"Açaí no Copo",description:"Açaí cremoso com 3 adicionais grátis.",price:20.00,image:"https://images.unsplash.com/photo-1577805947697-89e18249d767?auto=format&fit=crop&w=700&q=80",tag:"3 adicionais grátis"},
-      {id:"acai-1000",name:"Açaí no Copo 1 Litro",category:"acai",categoryLabel:"Açaí no Copo",description:"Açaí cremoso com 5 adicionais grátis. Ideal para compartilhar.",price:45.00,image:"https://images.unsplash.com/photo-1590301157890-4810ed352733?auto=format&fit=crop&w=700&q=80",tag:"5 adicionais grátis"},
+      // AÇAÍ NO COPO
+      { id: "acai-300", name: "Açaí no Copo 300ml", category: "acai", categoryLabel: "Açaí", description: "Açaí cremoso com 2 adicionais grátis.", price: 16.00, freeAddons: 2, image: "https://images.unsplash.com/photo-1590301157890-4810ed352733?auto=format&fit=crop&w=700&q=80", tag: "2 grátis" },
+      { id: "acai-500", name: "Açaí no Copo 500ml", category: "acai", categoryLabel: "Açaí", description: "Açaí cremoso com 3 adicionais grátis.", price: 20.00, freeAddons: 3, image: "https://images.unsplash.com/photo-1577805947697-89e18249d767?auto=format&fit=crop&w=700&q=80", tag: "3 grátis" },
+      { id: "acai-1000", name: "Açaí no Copo 1 Litro", category: "acai", categoryLabel: "Açaí", description: "Açaí cremoso com 5 adicionais grátis.", price: 45.00, freeAddons: 5, image: "https://images.unsplash.com/photo-1590301157890-4810ed352733?auto=format&fit=crop&w=700&q=80", tag: "5 grátis" },
 
-      // ============ GARRAFINHA ============
-      {id:"garrafinha-300",name:"Garrafinha 300ml",category:"garrafinha",categoryLabel:"Garrafinha",description:"Açaí na garrafinha com 1 adicional grátis.",price:15.00,image:"https://images.unsplash.com/photo-1577805947697-89e18249d767?auto=format&fit=crop&w=700&q=80",tag:"1 adicional grátis"},
-      {id:"garrafinha-500",name:"Garrafinha 500ml",category:"garrafinha",categoryLabel:"Garrafinha",description:"Açaí na garrafinha com 3 adicionais grátis.",price:17.00,image:"https://images.unsplash.com/photo-1577805947697-89e18249d767?auto=format&fit=crop&w=700&q=80",tag:"3 adicionais grátis"},
+      // GARRAFINHA
+      { id: "garrafinha-300", name: "Garrafinha 300ml", category: "garrafinha", categoryLabel: "Garrafinha", description: "Açaí na garrafinha com 1 adicional grátis.", price: 15.00, freeAddons: 1, image: "https://images.unsplash.com/photo-1577805947697-89e18249d767?auto=format&fit=crop&w=700&q=80", tag: "1 grátis" },
+      { id: "garrafinha-500", name: "Garrafinha 500ml", category: "garrafinha", categoryLabel: "Garrafinha", description: "Açaí na garrafinha com 3 adicionais grátis.", price: 17.00, freeAddons: 3, image: "https://images.unsplash.com/photo-1577805947697-89e18249d767?auto=format&fit=crop&w=700&q=80", tag: "3 grátis" },
 
-      // ============ SALGADOS ============
-      {id:"coxinha",name:"Coxinha",category:"salgados",categoryLabel:"Salgados",description:"Salgado frito e recheado.",price:7.00,image:"https://images.unsplash.com/photo-1601050690597-df0568f70950?auto=format&fit=crop&w=700&q=80",tag:"Salgado"},
-      {id:"risole",name:"Risole",category:"salgados",categoryLabel:"Salgados",description:"Risole frito e crocante.",price:7.00,image:"https://images.unsplash.com/photo-1601050690597-df0568f70950?auto=format&fit=crop&w=700&q=80",tag:"Salgado"},
-      {id:"cigarrete",name:"Cigarrete",category:"salgados",categoryLabel:"Salgados",description:"Salgado frito especial.",price:7.00,image:"https://images.unsplash.com/photo-1601050690597-df0568f70950?auto=format&fit=crop&w=700&q=80",tag:"Salgado"},
-      {id:"hamburguer-assado",name:"Hambúrguer Assado",category:"salgados",categoryLabel:"Salgados",description:"Hambúrguer assado com queijo e salada.",price:7.00,image:"https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=700&q=80",tag:"Assado"},
-
-      // ============ ADICIONAIS ============
-      {id:"nutella",name:"Nutella",category:"adicionais",categoryLabel:"Adicional",description:"Creme de avelã Nutella.",price:5.00,image:"https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=700&q=80",tag:"Adicional"},
-      {id:"chocolate-branco",name:"Chocolate Branco",category:"adicionais",categoryLabel:"Adicional",description:"Creme de chocolate branco.",price:3.00,image:"https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=700&q=80",tag:"Adicional"},
-      {id:"chocolate-leite",name:"Chocolate ao Leite",category:"adicionais",categoryLabel:"Adicional",description:"Creme de chocolate ao leite.",price:3.00,image:"https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=700&q=80",tag:"Adicional"},
-      {id:"morango",name:"Morango",category:"adicionais",categoryLabel:"Adicional",description:"Morango fresco picado.",price:3.00,image:"https://images.unsplash.com/photo-1571771894821-ce9b6c11b08e?auto=format&fit=crop&w=700&q=80",tag:"Adicional"},
-      {id:"leite-ninho",name:"Leite Ninho",category:"adicionais",categoryLabel:"Adicional",description:"Leite Ninho em pó.",price:3.00,image:"https://images.unsplash.com/photo-1563636619-e9143da7973b?auto=format&fit=crop&w=700&q=80",tag:"Adicional"},
-      {id:"creme-ninho",name:"Creme de Ninho",category:"adicionais",categoryLabel:"Adicional",description:"Creme de Leite Ninho.",price:4.00,image:"https://images.unsplash.com/photo-1563636619-e9143da7973b?auto=format&fit=crop&w=700&q=80",tag:"Adicional"},
-      {id:"doce-leite",name:"Doce de Leite",category:"adicionais",categoryLabel:"Adicional",description:"Doce de leite cremoso.",price:3.00,image:"https://images.unsplash.com/photo-1563636619-e9143da7973b?auto=format&fit=crop&w=700&q=80",tag:"Adicional"},
-      {id:"pacoca",name:"Paçoca",category:"adicionais",categoryLabel:"Adicional",description:"Paçoca esfarelada.",price:2.50,image:"https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=700&q=80",tag:"Adicional"},
-      {id:"ovomaltine",name:"Ovomaltine",category:"adicionais",categoryLabel:"Adicional",description:"Ovomaltine crocante.",price:4.00,image:"https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=700&q=80",tag:"Adicional"},
-      {id:"banana",name:"Banana",category:"adicionais",categoryLabel:"Adicional",description:"Banana em rodelas.",price:2.00,image:"https://images.unsplash.com/photo-1571771894821-ce9b6c11b08e?auto=format&fit=crop&w=700&q=80",tag:"Adicional"},
-      {id:"manga",name:"Manga",category:"adicionais",categoryLabel:"Adicional",description:"Manga picada.",price:3.00,image:"https://images.unsplash.com/photo-1571771894821-ce9b6c11b08e?auto=format&fit=crop&w=700&q=80",tag:"Adicional"},
-      {id:"granola",name:"Granola",category:"adicionais",categoryLabel:"Adicional",description:"Granola crocante.",price:2.00,image:"https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=700&q=80",tag:"Adicional"},
-      {id:"oreo",name:"Biscoito Oreo",category:"adicionais",categoryLabel:"Adicional",description:"Biscoito Oreo triturado.",price:3.00,image:"https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=700&q=80",tag:"Adicional"},
-
-      // ============ COBERTURAS ============
-      {id:"cob-morango",name:"Cobertura de Morango",category:"coberturas",categoryLabel:"Cobertura",description:"Calda de morango.",price:2.00,image:"https://images.unsplash.com/photo-1571771894821-ce9b6c11b08e?auto=format&fit=crop&w=700&q=80",tag:"Cobertura"},
-      {id:"cob-chocolate",name:"Cobertura de Chocolate",category:"coberturas",categoryLabel:"Cobertura",description:"Calda de chocolate.",price:2.00,image:"https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=700&q=80",tag:"Cobertura"},
-      {id:"cob-doce-leite",name:"Cobertura de Doce de Leite",category:"coberturas",categoryLabel:"Cobertura",description:"Calda de doce de leite.",price:2.00,image:"https://images.unsplash.com/photo-1563636619-e9143da7973b?auto=format&fit=crop&w=700&q=80",tag:"Cobertura"},
-      {id:"cob-leite-cond",name:"Cobertura de Leite Condensado",category:"coberturas",categoryLabel:"Cobertura",description:"Leite condensado.",price:2.50,image:"https://images.unsplash.com/photo-1563636619-e9143da7973b?auto=format&fit=crop&w=700&q=80",tag:"Cobertura"},
-
-      // ============ CONFEITOS ============
-      {id:"conf-granulado-branco",name:"Granulado Branco",category:"confeitos",categoryLabel:"Confeito",description:"Granulado branco.",price:1.50,image:"https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=700&q=80",tag:"Confeito"},
-      {id:"conf-granulado-preto",name:"Granulado Preto",category:"confeitos",categoryLabel:"Confeito",description:"Granulado preto.",price:1.50,image:"https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=700&q=80",tag:"Confeito"},
-      {id:"conf-granulado-colorido",name:"Granulado Colorido",category:"confeitos",categoryLabel:"Confeito",description:"Granulado colorido.",price:1.50,image:"https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=700&q=80",tag:"Confeito"},
-      {id:"conf-confete",name:"Confete Colorido",category:"confeitos",categoryLabel:"Confeito",description:"Confete colorido.",price:1.50,image:"https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=700&q=80",tag:"Confeito"},
-
-      // ============ FINI ============
-      {id:"fini-banana",name:"Fini Banana",category:"fini",categoryLabel:"Fini",description:"Balas Fini sabor Banana.",price:3.00,image:"https://images.unsplash.com/photo-1582058091505-f87a2e55a40f?auto=format&fit=crop&w=700&q=80",tag:"Fini"},
-      {id:"fini-beijo",name:"Fini Beijo",category:"fini",categoryLabel:"Fini",description:"Balas Fini Beijo de Moça.",price:3.00,image:"https://images.unsplash.com/photo-1582058091505-f87a2e55a40f?auto=format&fit=crop&w=700&q=80",tag:"Fini"},
-      {id:"fini-dentadura",name:"Fini Dentadura",category:"fini",categoryLabel:"Fini",description:"Balas Fini Dentadura.",price:3.00,image:"https://images.unsplash.com/photo-1582058091505-f87a2e55a40f?auto=format&fit=crop&w=700&q=80",tag:"Fini"},
-      {id:"fini-azedinho",name:"Fini Azedinho",category:"fini",categoryLabel:"Fini",description:"Balas Fini Azedinho.",price:3.00,image:"https://images.unsplash.com/photo-1582058091505-f87a2e55a40f?auto=format&fit=crop&w=700&q=80",tag:"Fini"},
-
-      // ============ BEBIDAS ============
-      {id:"coca-gelada",name:"Coca-Cola Gelada",category:"bebidas",categoryLabel:"Bebida",description:"Coca-Cola lata bem gelada.",price:6.00,image:"https://images.unsplash.com/photo-1622483767028-3f66f32aef97?auto=format&fit=crop&w=700&q=80",tag:"Bebida"}
+      // SALGADOS E BEBIDAS
+      { id: "coxinha", name: "Coxinha", category: "salgados", categoryLabel: "Salgados", description: "Salgado frito e recheado.", price: 7.00, image: "https://images.unsplash.com/photo-1601050690597-df0568f70950?auto=format&fit=crop&w=700&q=80" },
+      { id: "risole", name: "Risole", category: "salgados", categoryLabel: "Salgados", description: "Risole frito e crocante.", price: 7.00, image: "https://images.unsplash.com/photo-1601050690597-df0568f70950?auto=format&fit=crop&w=700&q=80" },
+      { id: "cigarrete", name: "Cigarrete", category: "salgados", categoryLabel: "Salgados", description: "Salgado frito especial.", price: 7.00, image: "https://images.unsplash.com/photo-1601050690597-df0568f70950?auto=format&fit=crop&w=700&q=80" },
+      { id: "hamburguer-assado", name: "Hambúrguer Assado", category: "salgados", categoryLabel: "Salgados", description: "Hambúrguer assado com queijo e salada.", price: 7.00, image: "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=700&q=80" },
+      { id: "coca-gelada", name: "Coca-Cola Gelada", category: "bebidas", categoryLabel: "Bebida", description: "Coca-Cola lata gelada.", price: 6.00, image: "https://images.unsplash.com/photo-1622483767028-3f66f32aef97?auto=format&fit=crop&w=700&q=80" }
     ];
 
-    // Estado do Carrinho
     let cart = [];
     let activeCategory = "todos";
     let searchQuery = "";
+    let selectedProductForCustom = null;
 
-    // Formatação de valor monetário
     function formatMoney(amount) {
-      return new Intl.NumberFormat(STORE_CONFIG.locale, {
-        style: "currency",
-        currency: STORE_CONFIG.currency
-      }).format(amount);
+      return new Intl.NumberFormat(STORE_CONFIG.locale, { style: "currency", currency: STORE_CONFIG.currency }).format(amount);
     }
 
-    // Filtra produtos e gerencia exibição do almoço do dia
     function getFilteredProducts() {
-      const currentDayOfWeek = new Date().getDay(); // 0 = Domingo, 1 = Segunda, ..., 6 = Sábado
-
-      return PRODUCTS.filter(product => {
-        // Validação do Almoço do Dia
-        if (product.category === "almoco") {
-          if (product.dayOfWeek !== currentDayOfWeek) {
-            return false;
-          }
-        }
-
-        // Filtro por Categoria
-        if (activeCategory !== "todos" && product.category !== activeCategory) {
-          return false;
-        }
-
-        // Filtro por Pesquisa
-        if (searchQuery.trim() !== "") {
+      const currentDay = new Date().getDay();
+      return PRODUCTS.filter(p => {
+        if (p.category === "almoco" && p.dayOfWeek !== currentDay) return false;
+        if (activeCategory !== "todos" && p.category !== activeCategory) return false;
+        if (searchQuery.trim()) {
           const term = searchQuery.toLowerCase();
-          const matchName = product.name.toLowerCase().includes(term);
-          const matchDesc = product.description.toLowerCase().includes(term);
-          return matchName || matchDesc;
+          return p.name.toLowerCase().includes(term) || p.description.toLowerCase().includes(term);
         }
-
         return true;
       });
     }
 
-    // Renderiza produtos na tela
     function renderProducts() {
       const grid = document.getElementById("productGrid");
-      const emptyState = document.getElementById("emptyState");
       const filtered = getFilteredProducts();
-
       grid.innerHTML = "";
 
-      if (filtered.length === 0) {
-        emptyState.hidden = false;
-        return;
-      }
-
-      emptyState.hidden = true;
-
       filtered.forEach(product => {
+        const hasOptions = product.category === "acai" || product.category === "garrafinha" || (product.category === "almoco" && product.optionsGroup);
+        const btnText = hasOptions ? "Escolher Opções" : "Adicionar +";
+
         const card = document.createElement("div");
         card.className = "product-card";
         card.innerHTML = `
-          <div class="product-image">
-            <img src="${product.image}" alt="${product.name}" loading="lazy">
-            ${product.tag ? `<span class="product-tag">${product.tag}</span>` : ""}
-          </div>
+          <div class="product-image"><img src="${product.image}" alt="${product.name}"></div>
           <div class="product-info">
             <span class="product-category">${product.categoryLabel}</span>
             <h3>${product.name}</h3>
             <p>${product.description}</p>
             <div class="product-bottom">
               <span class="product-price">${formatMoney(product.price)}</span>
-              <button class="button button-small" onclick="addToCart('${product.id}')">Adicionar +</button>
+              <button class="button button-small" onclick="handleProductClick('${product.id}')">${btnText}</button>
             </div>
           </div>
         `;
@@ -505,148 +410,222 @@
       });
     }
 
-    // Adiciona item ao carrinho
-    function addToCart(productId) {
+    // Clique no produto
+    function handleProductClick(productId) {
       const product = PRODUCTS.find(p => p.id === productId);
       if (!product) return;
 
-      const existingIndex = cart.findIndex(item => item.id === productId);
-      if (existingIndex > -1) {
-        cart[existingIndex].quantity += 1;
+      if (product.category === "acai" || product.category === "garrafinha") {
+        openAcaiModal(product);
+      } else if (product.category === "almoco" && product.optionsGroup) {
+        openAlmocoModal(product);
       } else {
-        cart.push({ ...product, quantity: 1 });
+        addToCart(product, []);
       }
+    }
+
+    // Modal para Açaí
+    function openAcaiModal(product) {
+      selectedProductForCustom = { ...product, type: "acai" };
+      document.getElementById("modalProductName").textContent = product.name;
+
+      const body = document.getElementById("modalOptionsBody");
+      body.innerHTML = `<p><small>Você tem <strong>${product.freeAddons} adicionais grátis</strong>!</small></p>`;
+
+      Object.keys(ACAI_EXTRAS).forEach(groupKey => {
+        const groupTitle = groupKey.toUpperCase();
+        const items = ACAI_EXTRAS[groupKey];
+
+        const groupEl = document.createElement("div");
+        groupEl.className = "option-group";
+        groupEl.innerHTML = `<h4>${groupTitle}</h4>`;
+
+        items.forEach(item => {
+          const itemEl = document.createElement("div");
+          itemEl.className = "option-item";
+          itemEl.innerHTML = `
+            <label>
+              <input type="checkbox" data-price="${item.price}" data-name="${item.name}" class="custom-option-checkbox" onchange="calculateModalTotal()">
+              <span>${item.name}</span>
+            </label>
+            <small>${formatMoney(item.price)}</small>
+          `;
+          groupEl.appendChild(itemEl);
+        });
+
+        body.appendChild(groupEl);
+      });
+
+      calculateModalTotal();
+      document.getElementById("customModal").hidden = false;
+    }
+
+    // Modal para Almoço
+    function openAlmocoModal(product) {
+      selectedProductForCustom = { ...product, type: "almoco" };
+      document.getElementById("modalProductName").textContent = product.name;
+
+      const body = document.getElementById("modalOptionsBody");
+      body.innerHTML = `<p><small>Monte seu prato com as opções de hoje:</small></p>`;
+
+      product.optionsGroup.forEach((group, gIdx) => {
+        const groupEl = document.createElement("div");
+        groupEl.className = "option-group";
+        groupEl.innerHTML = `<h4>${group.title}</h4>`;
+
+        group.options.forEach((opt, oIdx) => {
+          const isChecked = oIdx === 0 ? "checked" : "";
+          const optionEl = document.createElement("div");
+          optionEl.className = "option-item radio-option";
+          optionEl.innerHTML = `
+            <label>
+              <input type="radio" name="almoco_group_${gIdx}" value="${opt}" ${isChecked}>
+              <span>${opt}</span>
+            </label>
+          `;
+          groupEl.appendChild(optionEl);
+        });
+
+        body.appendChild(groupEl);
+      });
+
+      document.getElementById("modalTotalPrice").textContent = formatMoney(product.price);
+      document.getElementById("customModal").hidden = false;
+    }
+
+    // Cálculo do total no modal de açaí
+    function calculateModalTotal() {
+      if (!selectedProductForCustom || selectedProductForCustom.type !== "acai") return;
+
+      const checkboxes = document.querySelectorAll(".custom-option-checkbox:checked");
+      let selectedAddons = [];
+      checkboxes.forEach(cb => {
+        selectedAddons.push({
+          name: cb.getAttribute("data-name"),
+          price: parseFloat(cb.getAttribute("data-price"))
+        });
+      });
+
+      const freeLimit = selectedProductForCustom.freeAddons || 0;
+      let totalExtra = 0;
+
+      selectedAddons.sort((a,b) => a.price - b.price);
+      selectedAddons.forEach((addon, index) => {
+        if (index >= freeLimit) totalExtra += addon.price;
+      });
+
+      const finalPrice = selectedProductForCustom.price + totalExtra;
+      document.getElementById("modalTotalPrice").textContent = formatMoney(finalPrice);
+    }
+
+    // Confirmação do modal
+    document.getElementById("confirmAddToCart").addEventListener("click", () => {
+      if (!selectedProductForCustom) return;
+
+      let chosenOptions = [];
+
+      if (selectedProductForCustom.type === "acai") {
+        const checkboxes = document.querySelectorAll(".custom-option-checkbox:checked");
+        checkboxes.forEach(cb => chosenOptions.push(cb.getAttribute("data-name")));
+      } else if (selectedProductForCustom.type === "almoco") {
+        selectedProductForCustom.optionsGroup.forEach((group, gIdx) => {
+          const selectedRadio = document.querySelector(`input[name="almoco_group_${gIdx}"]:checked`);
+          if (selectedRadio) chosenOptions.push(selectedRadio.value);
+        });
+      }
+
+      addToCart(selectedProductForCustom, chosenOptions);
+      document.getElementById("customModal").hidden = true;
+    });
+
+    document.getElementById("closeModal").addEventListener("click", () => {
+      document.getElementById("customModal").hidden = true;
+    });
+
+    // Adiciona item no carrinho
+    function addToCart(product, selectedOptions) {
+      let extraPrice = 0;
+
+      if (product.type === "acai" && selectedOptions.length > 0) {
+        let freeLimit = product.freeAddons || 0;
+        let addonsObjects = selectedOptions.map(name => {
+          let found = null;
+          Object.values(ACAI_EXTRAS).forEach(list => {
+            let f = list.find(i => i.name === name);
+            if (f) found = f;
+          });
+          return found || { name, price: 0 };
+        });
+
+        addonsObjects.sort((a,b) => a.price - b.price);
+        addonsObjects.forEach((item, index) => {
+          if (index >= freeLimit) extraPrice += item.price;
+        });
+      }
+
+      const itemTotal = product.price + extraPrice;
+
+      cart.push({
+        id: product.id + "_" + Date.now(),
+        name: product.name,
+        price: itemTotal,
+        options: selectedOptions,
+        quantity: 1
+      });
 
       updateCart();
       showToast(`${product.name} adicionado ao pedido!`);
     }
 
-    // Altera quantidade de um item no carrinho
-    function changeQuantity(productId, delta) {
-      const index = cart.findIndex(item => item.id === productId);
-      if (index === -1) return;
-
-      cart[index].quantity += delta;
-      if (cart[index].quantity <= 0) {
-        cart.splice(index, 1);
-      }
-
-      updateCart();
-    }
-
-    // Atualiza visualização do carrinho
     function updateCart() {
-      const cartCount = document.getElementById("cartCount");
-      const cartTitleCount = document.getElementById("cartTitleCount");
-      const cartItems = document.getElementById("cartItems");
-      const cartEmpty = document.getElementById("cartEmpty");
-      const checkoutFields = document.getElementById("checkoutFields");
-      const cartFooter = document.getElementById("cartFooter");
-      const cartSubtotal = document.getElementById("cartSubtotal");
+      const totalItems = cart.reduce((acc, i) => acc + i.quantity, 0);
+      const subtotal = cart.reduce((acc, i) => acc + i.price, 0);
 
-      const totalItems = cart.reduce((acc, item) => acc + item.quantity, 0);
-      const subtotal = cart.reduce((acc, item) => acc + (item.price * item.quantity), 0);
+      document.getElementById("cartCount").textContent = totalItems;
+      document.getElementById("cartTitleCount").textContent = `(${totalItems})`;
+      document.getElementById("cartSubtotal").textContent = formatMoney(subtotal);
 
-      cartCount.textContent = totalItems;
-      cartTitleCount.textContent = `(${totalItems})`;
-      cartSubtotal.textContent = formatMoney(subtotal);
-
+      const container = document.getElementById("cartItems");
       if (cart.length === 0) {
-        cartItems.innerHTML = "";
-        cartEmpty.hidden = false;
-        checkoutFields.hidden = true;
-        cartFooter.hidden = true;
+        document.getElementById("cartEmpty").hidden = false;
+        document.getElementById("checkoutFields").hidden = true;
+        document.getElementById("cartFooter").hidden = true;
+        container.innerHTML = "";
         return;
       }
 
-      cartEmpty.hidden = true;
-      checkoutFields.hidden = false;
-      cartFooter.hidden = false;
+      document.getElementById("cartEmpty").hidden = true;
+      document.getElementById("checkoutFields").hidden = false;
+      document.getElementById("cartFooter").hidden = false;
 
-      cartItems.innerHTML = cart.map(item => `
+      container.innerHTML = cart.map((item, index) => `
         <div class="cart-item">
-          <div class="cart-item-details">
-            <strong>${item.name}</strong>
-            <small>${formatMoney(item.price)} cada</small>
+          <div>
+            <strong>${item.name}</strong><br>
+            ${item.options.length > 0 ? `<small>Opções: ${item.options.join(", ")}</small><br>` : ""}
+            <small>${formatMoney(item.price)}</small>
           </div>
-          <div class="cart-item-controls">
-            <button onclick="changeQuantity('${item.id}', -1)">-</button>
-            <span>${item.quantity}</span>
-            <button onclick="changeQuantity('${item.id}', 1)">+</button>
-          </div>
-          <div class="cart-item-total">
-            ${formatMoney(item.price * item.quantity)}
-          </div>
+          <button onclick="removeFromCart(${index})">Remover</button>
         </div>
       `).join("");
     }
 
-    // Envia o pedido via WhatsApp
-    function checkoutWhatsApp() {
-      if (cart.length === 0) return;
-
-      const customerName = document.getElementById("customerName").value.trim();
-      const fulfillment = document.querySelector('input[name="fulfillment"]:checked').value;
-      const address = document.getElementById("customerAddress").value.trim();
-      const payment = document.getElementById("paymentMethod").value;
-      const change = document.getElementById("cashChange").value.trim();
-      const notes = document.getElementById("orderNotes").value.trim();
-
-      if (!customerName) {
-        alert("Por favor, preencha o seu nome.");
-        return;
-      }
-
-      if (fulfillment === "Entrega" && !address) {
-        alert("Por favor, informe o endereço para entrega.");
-        return;
-      }
-
-      let text = `*NOVO PEDIDO - BEM MINEIRO AÇAÍ*\n`;
-      text += `------------------------------------\n`;
-      text += `*Cliente:* ${customerName}\n`;
-      text += `*Tipo:* ${fulfillment}\n`;
-      if (fulfillment === "Entrega") {
-        text += `*Endereço:* ${address}\n`;
-      }
-      text += `*Forma de Pagamento:* ${payment}\n`;
-      if (payment === "Dinheiro" && change) {
-        text += `*Troco para:* ${change}\n`;
-      }
-      text += `------------------------------------\n`;
-      text += `*ITENS DO PEDIDO:*\n`;
-
-      cart.forEach(item => {
-        text += `• ${item.quantity}x ${item.name} - ${formatMoney(item.price * item.quantity)}\n`;
-      });
-
-      const subtotal = cart.reduce((acc, item) => acc + (item.price * item.quantity), 0);
-      text += `------------------------------------\n`;
-      text += `*Subtotal:* ${formatMoney(subtotal)}\n`;
-
-      if (notes) {
-        text += `\n*Observações:* ${notes}\n`;
-      }
-
-      const encodedText = encodeURIComponent(text);
-      window.open(`https://wa.me/${STORE_CONFIG.whatsapp}?text=${encodedText}`, "_blank");
+    function removeFromCart(index) {
+      cart.splice(index, 1);
+      updateCart();
     }
 
-    // Exibe notificação rápida (Toast)
-    function showToast(message) {
-      const toast = document.getElementById("toast");
-      toast.textContent = message;
-      toast.classList.add("visible");
-      setTimeout(() => toast.classList.remove("visible"), 3000);
+    function showToast(msg) {
+      const t = document.getElementById("toast");
+      t.textContent = msg;
+      t.classList.add("visible");
+      setTimeout(() => t.classList.remove("visible"), 3000);
     }
 
-    // Event Listeners e Inicialização
+    // Inicialização
     document.addEventListener("DOMContentLoaded", () => {
-      document.getElementById("currentYear").textContent = new Date().getFullYear();
-
-      // Alternar abas de categoria
       document.querySelectorAll(".category-tab").forEach(tab => {
-        tab.addEventListener("click", (e) => {
+        tab.addEventListener("click", e => {
           document.querySelectorAll(".category-tab").forEach(t => t.classList.remove("active"));
           e.target.classList.add("active");
           activeCategory = e.target.getAttribute("data-category");
@@ -654,62 +633,35 @@
         });
       });
 
-      // Busca no cardápio
-      document.getElementById("menuSearch").addEventListener("input", (e) => {
+      document.getElementById("menuSearch").addEventListener("input", e => {
         searchQuery = e.target.value;
         renderProducts();
       });
 
-      // Controle da Gaveta do Carrinho
-      const cartDrawer = document.getElementById("cartDrawer");
-      const cartBackdrop = document.getElementById("cartBackdrop");
-
-      function openCartDrawer() {
-        cartDrawer.classList.add("open");
-        cartDrawer.removeAttribute("inert");
-        cartBackdrop.hidden = false;
-      }
-
-      function closeCartDrawer() {
-        cartDrawer.classList.remove("open");
-        cartDrawer.setAttribute("inert", "");
-        cartBackdrop.hidden = true;
-      }
-
-      document.getElementById("openCart").addEventListener("click", openCartDrawer);
-      document.getElementById("closeCart").addEventListener("click", closeCartDrawer);
-      document.getElementById("cartBackdrop").addEventListener("click", closeCartDrawer);
-      document.getElementById("browseMenu").addEventListener("click", closeCartDrawer);
-
-      // Alternar campo de Troco se opção de pagamento for Dinheiro
-      document.getElementById("paymentMethod").addEventListener("change", (e) => {
-        const changeField = document.getElementById("changeField");
-        changeField.hidden = e.target.value !== "Dinheiro";
+      document.getElementById("openCart").addEventListener("click", () => {
+        document.getElementById("cartDrawer").classList.add("open");
+        document.getElementById("cartBackdrop").hidden = false;
       });
 
-      // Alternar campo de Endereço dependendo da modalidade (Entrega/Retirada)
-      document.querySelectorAll('input[name="fulfillment"]').forEach(radio => {
-        radio.addEventListener("change", (e) => {
-          const addressField = document.getElementById("addressField");
-          addressField.hidden = e.target.value === "Retirada";
+      document.getElementById("closeCart").addEventListener("click", () => {
+        document.getElementById("cartDrawer").classList.remove("open");
+        document.getElementById("cartBackdrop").hidden = true;
+      });
+
+      document.getElementById("checkoutButton").addEventListener("click", () => {
+        const name = document.getElementById("customerName").value;
+        if (!name) return alert("Preencha seu nome");
+
+        let msg = `*NOVO PEDIDO - BEM MINEIRO AÇAÍ*\nCliente: ${name}\n\n*ITENS DO PEDIDO:*\n`;
+        cart.forEach(i => {
+          msg += `• ${i.name}\n`;
+          if (i.options.length) msg += `  Opções: ${i.options.join(", ")}\n`;
+          msg += `  Valor: ${formatMoney(i.price)}\n\n`;
         });
+
+        window.open(`https://wa.me/${STORE_CONFIG.whatsapp}?text=${encodeURIComponent(msg)}`, "_blank");
       });
 
-      // Botão finalizar checkout
-      document.getElementById("checkoutButton").addEventListener("click", checkoutWhatsApp);
-
-      // Formulário de contato via WhatsApp
-      document.getElementById("contactForm").addEventListener("submit", (e) => {
-        e.preventDefault();
-        const name = document.getElementById("contactName").value.trim();
-        const reason = document.getElementById("contactReason").value;
-        const msg = document.getElementById("contactMessage").value.trim();
-
-        const text = `Olá! Meu nome é ${name}.\nAssunto: ${reason}\nMensagem: ${msg}`;
-        window.open(`https://wa.me/${STORE_CONFIG.whatsapp}?text=${encodeURIComponent(text)}`, "_blank");
-      });
-
-      // Render inicial
       renderProducts();
     });
   </script>
